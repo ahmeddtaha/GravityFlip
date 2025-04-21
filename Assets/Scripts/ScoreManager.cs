@@ -5,20 +5,32 @@ using UnityEngine.SceneManagement;
 public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI highScoreText;   // ← New
+    public TextMeshProUGUI highScoreText;
     public GameObject gameOverPanel;
+    public GameObject pauseButton;
 
-    public float score = 0f;
-    public float scoreRate = 1f;
+    private float score = 0f;
+    private float scoreRate = 1f;
     private bool isGameOver = false;
+
+    private GameAudioManager audioManager;
 
     void Start()
     {
-        // Optional: Show current high score on launch
+        score = 0f;
+        isGameOver = false;
+
+        audioManager = FindObjectOfType<GameAudioManager>();
+
         if (highScoreText != null)
         {
             int storedHighScore = PlayerPrefs.GetInt("HighScore", 0);
             highScoreText.text = "High Score: " + storedHighScore;
+        }
+
+        if (audioManager != null)
+        {
+            audioManager.PlayGameplayMusic();
         }
     }
 
@@ -27,8 +39,14 @@ public class ScoreManager : MonoBehaviour
         if (!isGameOver)
         {
             score += scoreRate * Time.deltaTime;
-            scoreText.text = "Score: " + Mathf.FloorToInt(score).ToString();
+            scoreText.text = "Score: " + Mathf.FloorToInt(score);
         }
+    }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
+        scoreText.text = "Score: " + Mathf.FloorToInt(score);
     }
 
     public void GameOver()
@@ -39,7 +57,6 @@ public class ScoreManager : MonoBehaviour
         int finalScore = Mathf.FloorToInt(score);
         int storedHighScore = PlayerPrefs.GetInt("HighScore", 0);
 
-        // Update high score if needed
         if (finalScore > storedHighScore)
         {
             PlayerPrefs.SetInt("HighScore", finalScore);
@@ -55,19 +72,27 @@ public class ScoreManager : MonoBehaviour
         {
             gameOverPanel.SetActive(true);
         }
+
+        if (pauseButton != null)
+        {
+            pauseButton.SetActive(false);
+        }
+
+        if (audioManager != null)
+        {
+            audioManager.PlayGameOverSound();
+        }
     }
 
     public void RestartGame()
     {
         Time.timeScale = 1f;
+
+        if (audioManager != null)
+        {
+            audioManager.RestartMusic();
+        }
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-    public void ReturnToMainMenu()
-    {
-        Time.timeScale = 1f; // resume time if paused
-        SceneManager.LoadScene("MainMenu"); // replace with exact name of your main menu scene
-    }
-
-
 }
