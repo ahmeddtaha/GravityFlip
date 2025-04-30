@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class Player : MonoBehaviour
 {
     public float flipForce = 10f;
-
+    public GameObject flipParticles;
     private Rigidbody2D rb;
     private bool isGravityFlipped = false;
 
@@ -39,6 +40,17 @@ public class Player : MonoBehaviour
         // Smooth vertical force
         rb.velocity = new Vector2(0, 0);
         rb.AddForce(new Vector2(0, flipForce * (isGravityFlipped ? 1 : -1)), ForceMode2D.Impulse);
+
+        // Instantiate particle effect
+        if (flipParticles != null)
+        {
+            // Instantiate the particle prefab and store a reference to it
+            GameObject particles = Instantiate(flipParticles, transform.position, Quaternion.identity);
+
+            // Destroy after short duration (optional, if your system doesn't auto-destroy)
+            Destroy(particles, 0.5f);
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D collision)

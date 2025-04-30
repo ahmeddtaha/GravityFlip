@@ -12,9 +12,24 @@ public class ScoreManager : MonoBehaviour
     public float scoreRate = 1f;
     private bool isGameOver = false;
 
+<<<<<<< Updated upstream:Assets/Scripts/ScoreManager.cs
     void Start()
     {
         // Optional: Show current high score on launch
+=======
+    private GameAudioManager audioManager;
+
+
+    void Start()
+    {
+        GameAudioManager.Instance.AddButtonSounds();
+
+        score = 0f;
+        isGameOver = false;
+
+        audioManager = FindObjectOfType<GameAudioManager>();
+
+>>>>>>> Stashed changes:Assets/Scripts/Views/ScoreManager.cs
         if (highScoreText != null)
         {
             int storedHighScore = PlayerPrefs.GetInt("HighScore", 0);
@@ -54,7 +69,23 @@ public class ScoreManager : MonoBehaviour
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
+            GameAudioManager.Instance.AddButtonSounds(); 
+
         }
+<<<<<<< Updated upstream:Assets/Scripts/ScoreManager.cs
+=======
+
+        if (pauseButton != null)
+        {
+            pauseButton.SetActive(false);
+        }
+
+        if (audioManager != null)
+        {
+            audioManager.PlayGameOverSound();
+            audioManager.PlayMenuMusic(); 
+        }
+>>>>>>> Stashed changes:Assets/Scripts/Views/ScoreManager.cs
     }
 
     public void RestartGame()
