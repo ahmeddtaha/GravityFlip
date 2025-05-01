@@ -1,17 +1,7 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:Assets/Free Pixel Space Platform Pack/Astronaut/AstroLadder.png.meta
-guid: 9e32e8a78482a0142b7d8c36040d3ad5
-========
 guid: 3719c9d4b6dbdef46ab4aa8f1ea8fb8b
->>>>>>>> Stashed changes:Assets/Sprites/UI/pause.png.meta
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -2536697272414595886
-    second: AstroLadder_0
-  - first:
-      213: -1140528671143257715
-    second: AstroLadder_1
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -53,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -104,20 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: iPhone
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -143,7 +120,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
-    buildTarget: Server
+    buildTarget: iPhone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -157,62 +134,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: AstroLadder_0
-      rect:
-        serializedVersion: 2
-        x: 135
-        y: 0
-        width: 210
-        height: 465
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1f96a7201910ce84c86ba3d6b163f5d9
-      internalID: -2536697272414595886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AstroLadder_1
-      rect:
-        serializedVersion: 2
-        x: 555
-        y: 0
-        width: 210
-        height: 465
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9d96a677e4f904548a9c8bd1531fbeaf
-      internalID: -1140528671143257715
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: fb7e13f2e6f42fc419716912f2bb6d5e
+    spriteID: b868f229f96672a4898b94a6d45408d1
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      AstroLadder_0: -2536697272414595886
-      AstroLadder_1: -1140528671143257715
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

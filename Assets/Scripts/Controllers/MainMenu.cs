@@ -1,12 +1,10 @@
 ï»¿using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-<<<<<<< Updated upstream:Assets/Scripts/MainMenu.cs
-    public TextMeshProUGUI highScoreDisplay;
-=======
     public Button startButton;
     public Button leaderboardButton;
     public Button logoutButton;
@@ -31,23 +29,20 @@ public class MainMenu : MonoBehaviour
             SceneManager.LoadScene("Login");
         }
     }
->>>>>>> Stashed changes:Assets/Scripts/Controllers/MainMenu.cs
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Game"); // replace with actual game scene name
+        SceneManager.LoadScene("Game");
     }
 
-    public void ShowHighScore()
+    public void ShowLeaderboard()
     {
-        int highScore = PlayerPrefs.GetInt("HighScore", 0);
-        highScoreDisplay.text = "High Score: " + highScore;
-        highScoreDisplay.gameObject.SetActive(true);
+        SceneManager.LoadScene("Leaderboard");
     }
 
-    public void ExitGame()
+    public void Logout()
     {
-        Application.Quit();
-        Debug.Log("Game quit (won’t work in editor)");
+        NetworkManager.Instance.Logout();
+        SceneManager.LoadScene("Login");
     }
 }
