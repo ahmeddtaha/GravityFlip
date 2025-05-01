@@ -2,6 +2,8 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Manages music and sound effects across all scenes using Singleton
+
 public class GameAudioManager : MonoBehaviour
 {
     public static GameAudioManager Instance { get; private set; }
@@ -16,6 +18,7 @@ public class GameAudioManager : MonoBehaviour
 
     void Awake()
     {
+        // Ensure only one instance persists across scenes
         if (Instance == null)
         {
             Instance = this;
@@ -34,11 +37,12 @@ public class GameAudioManager : MonoBehaviour
 
     void Start()
     {
-        PlayGameplayMusic();
+        PlayGameplayMusic(); // Default music on start
     }
 
     public void PlayGameplayMusic()
     {
+        // Avoid restarting if already playing
         if (audioSource.clip == menuMusic && audioSource.isPlaying)
             return;
         audioSource.clip = gameplayMusic;
@@ -74,7 +78,7 @@ public class GameAudioManager : MonoBehaviour
         audioSource.Play();
     }
 
-    // Call this method in Start() of each scene to add sound to all buttons
+    // Adds click sounds to all buttons in the scene
     public void AddButtonSounds()
     {
         Button[] buttons = FindObjectsOfType<Button>();

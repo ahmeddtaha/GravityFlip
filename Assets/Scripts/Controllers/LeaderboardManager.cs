@@ -3,15 +3,18 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
+// Manages fetching and displaying leaderboard scores from the server
+
 public class LeaderboardManager : MonoBehaviour
 {
-    public TextMeshProUGUI[] leaderboardEntries; // Array of 10 TextMeshProUGUI elements
+    public TextMeshProUGUI[] leaderboardEntries; // Array of 4 text fields
     public TextMeshProUGUI loadingText;
     public Button refreshButton;
     public Button backButton;
 
     private void Start()
     {
+        // Button setup and initial refresh
         refreshButton.onClick.AddListener(RefreshLeaderboard);
         backButton.onClick.AddListener(BackToMainMenu);
         GameAudioManager.Instance.AddButtonSounds();
@@ -23,6 +26,7 @@ public class LeaderboardManager : MonoBehaviour
         loadingText.gameObject.SetActive(true);
         ClearLeaderboard();
 
+        // Fetch leaderboard from server
         StartCoroutine(NetworkManager.Instance.GetLeaderboard((success, entries) =>
         {
             loadingText.gameObject.SetActive(false);
@@ -48,6 +52,7 @@ public class LeaderboardManager : MonoBehaviour
 
     private void ClearLeaderboard()
     {
+        // Clear text from all entry fields
         foreach (var entry in leaderboardEntries)
         {
             entry.text = "";

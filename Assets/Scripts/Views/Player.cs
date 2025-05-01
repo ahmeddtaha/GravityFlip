@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
+// Handles gravity flipping, player input, and collision with obstacles
+
 public class Player : MonoBehaviour
 {
     public float flipForce = 10f;
@@ -13,12 +15,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.gravityScale = 1f;
+        rb.gravityScale = 1f; // Start with gravity pulling down
     }
 
     void Update()
     {
-        // Only flip gravity
+        // Flip gravity on space or mouse click
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             FlipGravity();
@@ -55,6 +57,7 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // Game over if player hits an obstacle
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("Game Over");

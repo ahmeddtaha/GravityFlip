@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Manages score, high score, game over state, and leaderboard submission
+
 public class ScoreManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
@@ -18,6 +20,7 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
+        // Add button click sounds and start music
         GameAudioManager.Instance.AddButtonSounds();
 
         score = 0f;
@@ -31,6 +34,7 @@ public class ScoreManager : MonoBehaviour
             highScoreText.text = "High Score: " + storedHighScore;
         }
 
+        // Play game music
         if (audioManager != null)
         {
             audioManager.PlayGameplayMusic();
@@ -41,6 +45,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (!isGameOver)
         {
+            // Increase and display score
             score += scoreRate * Time.deltaTime;
             scoreText.text = "Score: " + Mathf.FloorToInt(score);
         }
@@ -48,6 +53,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int amount)
     {
+        // Add score from coins
         score += amount;
         scoreText.text = "Score: " + Mathf.FloorToInt(score);
     }
@@ -60,6 +66,7 @@ public class ScoreManager : MonoBehaviour
         int finalScore = Mathf.FloorToInt(score);
         int storedHighScore = PlayerPrefs.GetInt("HighScore", 0);
 
+        // Save high score if it's better
         if (finalScore > storedHighScore)
         {
             PlayerPrefs.SetInt("HighScore", finalScore);
@@ -72,11 +79,13 @@ public class ScoreManager : MonoBehaviour
             Debug.Log(message);
         }));
 
+        // Update high score display
         if (highScoreText != null)
         {
             highScoreText.text = "High Score: " + PlayerPrefs.GetInt("HighScore", 0);
         }
 
+        // Show Game Over screen
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
@@ -84,11 +93,13 @@ public class ScoreManager : MonoBehaviour
 
         }
 
-        if (pauseButton != null)
+        // Hide pause button
+                if (pauseButton != null)
         {
             pauseButton.SetActive(false);
         }
-
+  
+                // Play sounds
         if (audioManager != null)
         {
             audioManager.PlayGameOverSound();
@@ -100,6 +111,7 @@ public class ScoreManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        // Restart music and reload the scene
         if (audioManager != null)
         {
             audioManager.RestartMusic();

@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+// Manages user login and registration interactions in the UI
+
 public class LoginManager : MonoBehaviour
 {
     [Header("Login")]
@@ -25,7 +27,7 @@ public class LoginManager : MonoBehaviour
 
     private void Start()
     {
-        // Play click sounds for all visible buttons in the scene
+        // Add button sound effects
         GameAudioManager.Instance.AddButtonSounds();
 
         // Setup button listeners
@@ -95,6 +97,7 @@ public class LoginManager : MonoBehaviour
         loginButton.interactable = false;
         loginMessageText.text = "Logging in...";
 
+        // Send login request to backend
         StartCoroutine(NetworkManager.Instance.Login(username, password, (success, message) =>
         {
             loginButton.interactable = true;
@@ -121,6 +124,7 @@ public class LoginManager : MonoBehaviour
         registerButton.interactable = false;
         registerMessageText.text = "Registering...";
 
+        // Send registration request to backend
         StartCoroutine(NetworkManager.Instance.Register(username, password, (success, message) =>
         {
             registerButton.interactable = true;

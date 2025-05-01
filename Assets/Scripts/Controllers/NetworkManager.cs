@@ -4,6 +4,8 @@ using System.Collections;
 using System.Text;
 using System;
 
+// Handles communication between Unity and the backend server
+
 [Serializable]
 public class ErrorResponse
 {
@@ -54,6 +56,7 @@ public class NetworkManager : MonoBehaviour
 
     private void Awake()
     {
+        // Ensure one persistent instance
         if (Instance == null)
         {
             Instance = this;

@@ -44,7 +44,7 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
-        pauseButton.SetActive(true); // 👈 Show pause button
+        pauseButton.SetActive(true); // Show pause button
     }
 
 
@@ -53,16 +53,15 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
-        pauseButton.SetActive(false); // 👈 Hide pause button
+        pauseButton.SetActive(false); // Hide pause button
         GameAudioManager.Instance.AddButtonSounds();
 
     }
 
 
-
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); // Replace with your actual scene name
+        SceneManager.LoadScene("MainMenu");
     }
 }

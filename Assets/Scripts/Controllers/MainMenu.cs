@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
+// Manages button navigation and music in the main menu
 public class MainMenu : MonoBehaviour
 {
     public Button startButton;
@@ -11,7 +12,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        // Play menu ambient music
+        // Play menu ambient music and button sound effect
         GameAudioManager.Instance.PlayMenuMusic();
         GameAudioManager.Instance.AddButtonSounds(); 
 
